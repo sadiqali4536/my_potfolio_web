@@ -83,315 +83,6 @@ class _AboutSectionState extends State<AboutSection> {
 }
 
 
-// class _Mobile_About extends StatelessWidget {
-//   final Future<void> Function()? sendEmail;
-//   final Future<void> Function()? makePhoneCall;
-//   final Future<void> Function(String)? downloadCV;
-
-//   const _Mobile_About({
-//     super.key,
-//     required this.sendEmail,
-//     required this.makePhoneCall,
-//     required this.downloadCV,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final screenHeight = MediaQuery.of(context).size.height;
-//     final screenWidth = MediaQuery.of(context).size.width;
-
-//     return Container(
-//       width: double.infinity,
-//       color: Colors.white,
-//       child: Stack(
-//         children: [
-//           Padding(
-//             padding: EdgeInsets.symmetric(
-//               horizontal: screenWidth * 0.08,
-//               vertical: screenHeight * 0.05,
-//             ),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.center,
-//               children: [
-//                 // Profile Image
-//                 Container(
-//                   width: screenWidth * 0.4,
-//                   height: screenWidth * 0.4,
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(25),
-//                     gradient: const LinearGradient(
-//                       begin: Alignment.topRight,
-//                       end: Alignment.bottomLeft,
-//                       colors: [Color(0xFF00B4D8), Color(0xFF007BFF)],
-//                     ),
-//                   ),
-//                   child: Padding(
-//                     padding: const EdgeInsets.all(6.0),
-//                     child: Container(
-//                       decoration: BoxDecoration(
-//                         borderRadius: BorderRadius.circular(20),
-//                         image: DecorationImage(
-//                           image: NetworkImage(Mydata.profileImage),
-//                           fit: BoxFit.cover,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-
-//                 SizedBox(height: screenHeight * 0.04),
-
-//                 // About Me Text
-//                 Text(
-//                   "About Me & CODEWAY",
-//                   textAlign: TextAlign.center,
-//                   style: GoogleFonts.poppins(
-//                     fontWeight: FontWeight.bold,
-//                     color: const Color.fromRGBO(21, 27, 37, 1),
-//                     fontSize: 27,
-//                   ),
-//                 ),
-//                 const SizedBox(height: 16),
-//                 Text(
-//                   "I'm a passionate full-stack Flutter developer crafting seamless cross-platform apps "
-//                   "for Android, iOS, Web, and Desktop. With over 1 year of experience, I specialize in turning "
-//                   "complex ideas into elegant, scalable solutions.",
-//                   textAlign: TextAlign.center,
-//                   style: GoogleFonts.poppins(
-//                     fontWeight: FontWeight.w400,
-//                     fontSize: 15.6,
-//                     color: Color.fromRGBO(93, 105, 122, 1),
-//                   ),
-//                 ),
-
-//                 SizedBox(height: screenHeight * 0.04),
-
-//                 // CODEWAY Info
-//                 Row(
-//                   children: [
-//                     Container(
-//                       height: 75,
-//                       width: 5,
-//                       decoration: BoxDecoration(
-//                         color: const Color.fromRGBO(0, 200, 150, 100),
-//                         borderRadius: BorderRadius.circular(3),
-//                       ),
-//                     ),
-//                     SizedBox(width: screenWidth * 0.04),
-//                     Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         Text(
-//                           '"At CODEWAY SOFTWARE SOLUTIONS, ',
-//                           style: TextStyle(
-//                             fontWeight: FontWeight.w500,
-//                             fontSize: 18,
-//                             height: 1.3,
-//                             color: Color.fromRGBO(0, 123, 255, 1),
-//                           ),
-//                           textAlign: TextAlign.center,
-//                         ),
-//                         Text(
-//                           "we help businesses turn ideas into ",
-//                           style: TextStyle(
-//                             fontSize: 18,
-//                             height: 1.3,
-//                             color: Color.fromRGBO(0, 123, 255, 1),
-//                           ),
-//                           textAlign: TextAlign.center,
-//                         ),
-//                         Text(
-//                           "digital products.\"",
-//                           style: TextStyle(
-//                             fontSize: 18,
-//                             height: 1.3,
-//                             color: Color.fromRGBO(0, 123, 255, 1),
-//                           ),
-//                           textAlign: TextAlign.center,
-//                         ),
-//                       ],
-//                     ),
-//                   ],
-//                 ),
-
-//                 SizedBox(height: screenHeight * 0.28),
-
-//                 // Download CV Button
-//               ],
-//             ),
-//           ),
-
-//           // Top circular icon overlay
-//           Positioned(
-//             top: screenHeight * 0.04,
-//             left: screenWidth * 0.28,
-//             child: Container(
-//               width: 49,
-//               height: 49,
-//               decoration: const BoxDecoration(
-//                 color: Color(0xFF007BFF),
-//                 shape: BoxShape.circle,
-//               ),
-//               child: Image.asset("assets/images/code_icon.png", scale: 1.3),
-//             ),
-//           ),
-
-//           Positioned(
-//             bottom: screenHeight * 0.22,
-//             right: screenWidth * 0.43,
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 // Email
-//                 GestureDetector(
-//                   onTap: () => sendEmail?.call(),
-//                   child: Container(
-//                     width: 50,
-//                     height: 55,
-//                     decoration: BoxDecoration(
-//                       color: const Color.fromARGB(33, 0, 123, 255),
-//                       borderRadius: BorderRadius.circular(12),
-//                     ),
-//                     child: Image.asset(
-//                       "assets/decoration_items/email.png",
-//                       scale: 20,
-//                       color: const Color.fromRGBO(0, 123, 255, 1),
-//                     ),
-//                   ),
-//                 ),
-//                 const SizedBox(width: 10),
-//                 Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     const Text(
-//                       "Email",
-//                       style: TextStyle(
-//                         fontSize: 16,
-//                         fontWeight: FontWeight.w800,
-//                         color: Color.fromRGBO(22, 22, 22, 1),
-//                       ),
-//                     ),
-//                     Text(
-//                       Mydata.emailAddress,
-//                       style: const TextStyle(
-//                         fontSize: 16,
-//                         color: Color.fromRGBO(78, 77, 77, 1),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//           ),
-
-//           Positioned(
-//             bottom: screenHeight * 0.13,
-//             right: screenWidth * 0.55,
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 // Phone
-//                 GestureDetector(
-//                   onTap: () => makePhoneCall?.call(),
-//                   child: Container(
-//                     width: 50,
-//                     height: 55,
-//                     decoration: BoxDecoration(
-//                       color: const Color.fromRGBO(1, 205, 154, 0.144),
-//                       borderRadius: BorderRadius.circular(12),
-//                     ),
-//                     child: Image.asset(
-//                       "assets/decoration_items/call.png",
-//                       scale: 20,
-//                       color: const Color.fromRGBO(1, 205, 154, 1),
-//                     ),
-//                   ),
-//                 ),
-//                 const SizedBox(width: 10),
-//                 Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     const Text(
-//                       "Phone",
-//                       style: TextStyle(
-//                         fontSize: 16,
-//                         fontWeight: FontWeight.w800,
-//                         color: Color.fromRGBO(22, 22, 22, 1),
-//                       ),
-//                     ),
-//                     Text(
-//                       "+91 ${Mydata.phoneNumber}",
-//                       style: const TextStyle(
-//                         fontSize: 16,
-//                         color: Color.fromRGBO(78, 77, 77, 1),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//           ),
-//           Positioned(
-//             bottom: screenHeight * 0.04,
-//             left: screenWidth * 0.28,
-//             child: ElevatedButton(
-//               onPressed: () => downloadCV?.call(Mydata.resumeLink),
-//               style: ElevatedButton.styleFrom(
-//                 backgroundColor: const Color(0xFF007BFF),
-//                 foregroundColor: Colors.white,
-//                 padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 18),
-//                 shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(25),
-//                 ),
-//                 elevation: 5,
-//               ),
-//               child: Text(
-//                 'Download CV',
-//                 style: GoogleFonts.poppins(
-//                   fontWeight: FontWeight.w600,
-//                   fontSize: 16,
-//                 ),
-//               ),
-//             ),
-//           ),
-
-
-//           // Experience Card
-//           Positioned(
-//             top: screenHeight * 0.27,
-//             left: screenWidth * 0.55,
-//             child: Container(
-//               width: 120,
-//               height: 60,
-//               decoration: BoxDecoration(
-//                 color: const Color(0xFF007BFF),
-//                 borderRadius: BorderRadius.circular(15),
-//               ),
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: [
-//                   Text(
-//                     "${Mydata.years}+",
-//                     style: const TextStyle(
-//                       fontSize: 16,
-//                       color: Colors.white,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                   const Text(
-//                     "Years Experience",
-//                     style: TextStyle(fontSize: 9, color: Colors.white70),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 class _Mobile_About extends StatelessWidget {
   final Future<void> Function()? sendEmail;
   final Future<void> Function()? makePhoneCall;
@@ -530,7 +221,10 @@ class _Mobile_About extends StatelessWidget {
           // Top circular icon overlay - positioned relative to profile image
           Positioned(
             top: screenHeight * 0.04,
-            left: (screenWidth * 0.5) - (screenWidth * 0.2) - 10, // Center minus half image width minus offset
+            left:
+                (screenWidth * 0.5) -
+                (screenWidth * 0.2) -
+                10, // Center minus half image width minus offset
             child: Container(
               width: 49,
               height: 49,
@@ -544,7 +238,10 @@ class _Mobile_About extends StatelessWidget {
 
           // Experience Card - positioned relative to profile image
           Positioned(
-            top: screenHeight * 0.04 + (screenWidth * 0.4) - 30, // Top padding + image height - offset
+            top:
+                screenHeight * 0.04 +
+                (screenWidth * 0.4) -
+                30, // Top padding + image height - offset
             right: screenWidth * 0.08, // Align with right padding
             child: Container(
               width: 120,
@@ -691,7 +388,10 @@ class _Mobile_About extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF007BFF),
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 18),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 18,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
@@ -712,8 +412,6 @@ class _Mobile_About extends StatelessWidget {
     );
   }
 }
-
-
 
 class _Tablet_About extends StatelessWidget {
   final Future<void> Function()? sendEmail;
@@ -757,64 +455,43 @@ class _Tablet_About extends StatelessWidget {
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  // 🔹 Main Image with Blue Border
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(20),
-                  //     border: Border.all(
-                  //       color: const Color(0xFF007BFF),
-                  //       width: 4,
-                  //     ),
-                  //   ),
-                  //   child: ClipRRect(
-                  //     borderRadius: BorderRadius.circular(16),
-                  //     child: Image.network(
-                  //       Mydata.profileImage,
-                  //       width: imageWidth,
-                  //       height: 360 + (scale * 30),
-                  //       fit: BoxFit.cover,
-                  //     ),
-                  //   ),
-                  // ),
-
                   Container(
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(20),
-    border: Border.all(
-      color: const Color(0xFF007BFF),
-      width: 4,
-    ),
-  ),
-  child: ClipRRect(
-    borderRadius: BorderRadius.circular(16),
-    child: LayoutBuilder(
-      builder: (context, constraints) {
-        final imgWidth = constraints.maxWidth;
-        final imgHeight = constraints.maxHeight;
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: const Color(0xFF007BFF),
+                        width: 4,
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final imgWidth = constraints.maxWidth;
+                          final imgHeight = constraints.maxHeight;
 
-        return Image.asset(
-          Mydata.profileImage,
-          width: imgWidth,
-          height: imgHeight,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            // fallback placeholder if image fails
-            return Container(
-              color: Colors.grey[300],
-              alignment: Alignment.center,
-              child: const Icon(
-                Icons.person,
-                size: 50,
-                color: Colors.grey,
-              ),
-            );
-          },
-        );
-      },
-    ),
-  ),
-),
-
+                          return Image.asset(
+                            Mydata.profileImage,
+                            width: imgWidth,
+                            height: imgHeight,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              // fallback placeholder if image fails
+                              return Container(
+                                color: Colors.grey[300],
+                                alignment: Alignment.center,
+                                child: const Icon(
+                                  Icons.person,
+                                  size: 50,
+                                  color: Colors.grey,
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
 
                   // 🔹 Top-left Code Icon
                   Positioned(
@@ -839,42 +516,42 @@ class _Tablet_About extends StatelessWidget {
                   ),
 
                   // 🔹 Bottom-right "Years Experience" Box
-                 Positioned(
-                  bottom: -15,
-                  right: -35, // ✅ Moved a bit left from -15 → 10
-                  child: Container(
-                    width: 120 + (scale * 10),
-                    height: 60 + (scale * 5),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF007BFF),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "1+",
-                          style: GoogleFonts.poppins(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                  Positioned(
+                    bottom: -15,
+                    right: -35, // ✅ Moved a bit left from -15 → 10
+                    child: Container(
+                      width: 120 + (scale * 10),
+                      height: 60 + (scale * 5),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF007BFF),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "1+",
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Years Experience",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Colors.white70,
+                          Text(
+                            "Years Experience",
+                            style: GoogleFonts.poppins(
+                              fontSize: 12,
+                              color: Colors.white70,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ), 
                 ],
               ),
             ),
-             
+
             SizedBox(width: screenWidth * 0.07),
 
             // 🔹 About Text Content
@@ -1039,28 +716,30 @@ class _Tablet_About extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: screenHeight * 0.1,),
+                  SizedBox(height: screenHeight * 0.1),
                   ElevatedButton(
-               onPressed: () => downloadCV?.call(Mydata.resumeLink),
-               style: ElevatedButton.styleFrom(
-                 backgroundColor: const Color(0xFF007BFF),
-                 foregroundColor: Colors.white,
-                 padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 18),
-                 shape: RoundedRectangleBorder(
-                   borderRadius: BorderRadius.circular(25),
-                 ),
-                 elevation: 5,
-               ),
-               child: Text(
-                 'Download CV',
-                 style: GoogleFonts.poppins(
-                   fontWeight: FontWeight.w600,
-                   fontSize: 16,
-                 ),
-               ),
-             ),
+                    onPressed: () => downloadCV?.call(Mydata.resumeLink),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF007BFF),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 18,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      elevation: 5,
+                    ),
+                    child: Text(
+                      'Download CV',
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
                 ],
-                
               ),
             ),
           ],
@@ -1069,8 +748,6 @@ class _Tablet_About extends StatelessWidget {
     );
   }
 }
-
-
 
 class _Desktop_About extends StatelessWidget {
   final Future<void> Function()? sendEmail;
@@ -1131,7 +808,7 @@ class _Desktop_About extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
-                              image: NetworkImage(Mydata.profileImage),
+                              image: AssetImage(Mydata.profileImage),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -1150,7 +827,7 @@ class _Desktop_About extends StatelessWidget {
                           color: Color(0xFF007BFF),
                           shape: BoxShape.circle,
                         ),
-                        child: Image.asset("assets/images/code_icon.png",),
+                        child: Image.asset("assets/images/code_icon.png"),
                       ),
                     ),
 
@@ -1190,8 +867,9 @@ class _Desktop_About extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 50), // Fixed spacing between image and button
-
+                const SizedBox(
+                  height: 50,
+                ), // Fixed spacing between image and button
                 // Download CV Button
                 ElevatedButton(
                   onPressed: () => downloadCV?.call(Mydata.resumeLink),
@@ -1379,8 +1057,6 @@ class _Desktop_About extends StatelessWidget {
   }
 }
 
-
-
 //large desktop about section
 class _LargeDesktop_About extends StatelessWidget {
   final Future<void> Function()? sendEmail;
@@ -1428,9 +1104,9 @@ class _LargeDesktop_About extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
-                          image: NetworkImage(
+                          image: AssetImage(
                             Mydata.profileImage,
-                          ), // <-- use NetworkImage
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),
