@@ -278,7 +278,6 @@
 //   }
 // }
 
-
 import 'dart:convert';
 import 'package:code_way/MVVM/model/mydata.dart';
 import 'package:flutter/material.dart';
@@ -315,17 +314,16 @@ class _ContactSectionState extends State<ContactSection> {
     super.dispose();
   }
 
+  // ✅ FIXED: Properly send data as form-urlencoded so Apps Script can read it
   Future<void> _sendMessage() async {
     final name = _nameController.text.trim();
     final email = _emailController.text.trim();
     final project = _projectController.text.trim();
 
     if (name.isEmpty || email.isEmpty || project.isEmpty) {
-      setState(() {
-        _nameController.clear();
-        _emailController.clear();
-        _projectController.clear();
-      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("⚠️ Please fill in all fields.")),
+      );
       return;
     }
 
@@ -333,19 +331,33 @@ class _ContactSectionState extends State<ContactSection> {
 
     try {
       final url = Uri.parse(Mydata.apiUrl);
+
       final response = await http.post(
         url,
-        headers: {"Content-Type": "application/json"},
-        body: json.encode({
-          'name': name,
-          'email': email,
-          'project': project,
-        }),
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: {
+          "name": name,
+          "email": email,
+          "project": project,
+        },
       );
-      final result = json.decode(response.body);
-      print("Response: $result");
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("✅ Message sent successfully!")),
+        );
+        print("Response: ${response.body}");
+      } else {
+        print("❌ Failed: ${response.statusCode}");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("❌ Failed to send: ${response.statusCode}")),
+        );
+      }
     } catch (e) {
-      print("Error sending message: $e");
+      print("⚠️ Error sending message: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("⚠️ Error: $e")),
+      );
     } finally {
       setState(() {
         _isLoading = false;
@@ -390,13 +402,15 @@ class _ContactSectionState extends State<ContactSection> {
                 ? 40.0
                 : 24.0;
     final verticalPadding = 40.0;
-    final useRowLayout = layout == LayoutType.desktop || layout == LayoutType.largeDesktop;
+    final useRowLayout =
+        layout == LayoutType.desktop || layout == LayoutType.largeDesktop;
 
     return Container(
       width: double.infinity,
       color: Colors.white,
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
+        padding: EdgeInsets.symmetric(
+            horizontal: horizontalPadding, vertical: verticalPadding),
         child: useRowLayout
             ? Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -445,6 +459,7 @@ class _LeftSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+       SizedBox(height: 100,),
         Text(
           "Let's Build Something Together",
           style: GoogleFonts.poppins(
@@ -457,7 +472,8 @@ class _LeftSection extends StatelessWidget {
         const SizedBox(height: 20),
         Text(
           "I'd love to hear your idea — let's create a product that scales\nand makes a real impact in your industry.",
-          style: GoogleFonts.poppins(fontSize: 16, color: Colors.black54, height: 1.6),
+          style: GoogleFonts.poppins(
+              fontSize: 16, color: Colors.black54, height: 1.6),
         ),
         const SizedBox(height: 30),
         Wrap(
@@ -469,15 +485,20 @@ class _LeftSection extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF25D366),
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset("assets/images/whatsapp.png", height: 28, width: 20),
+                  Image.asset("assets/images/whatsapp.png",
+                      height: 28, width: 20),
                   const SizedBox(width: 8),
-                  Text("WhatsApp", style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500)),
+                  Text("WhatsApp",
+                      style: GoogleFonts.poppins(
+                          fontSize: 14, fontWeight: FontWeight.w500)),
                 ],
               ),
             ),
@@ -486,15 +507,19 @@ class _LeftSection extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF0EA5E9),
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset("assets/images/Email.png"),
                   const SizedBox(width: 8),
-                  Text("Email", style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500)),
+                  Text("Email",
+                      style: GoogleFonts.poppins(
+                          fontSize: 14, fontWeight: FontWeight.w500)),
                 ],
               ),
             ),
@@ -528,14 +553,21 @@ class _FormSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 12, offset: const Offset(0, 6))],
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 12,
+              offset: const Offset(0, 6))
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildTextField(label: "Name", hint: "Your name", controller: nameController),
+          _buildTextField(
+              label: "Name", hint: "Your name", controller: nameController),
           const SizedBox(height: 20),
-          _buildTextField(label: "Email", hint: "your@email.com", controller: emailController),
+          _buildTextField(
+              label: "Email", hint: "your@email.com", controller: emailController),
           const SizedBox(height: 20),
           _buildTextField(
             label: "Project Details",
@@ -552,13 +584,17 @@ class _FormSection extends StatelessWidget {
                 backgroundColor: const Color(0xFF0EA5E9),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 18),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
               ),
               child: isLoading
                   ? const CircularProgressIndicator(color: Colors.white)
                   : Text(
                       "Send Message",
-                      style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
                     ),
             ),
           ),
@@ -576,26 +612,32 @@ class _FormSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500)),
+        Text(label,
+            style: GoogleFonts.poppins(
+                fontSize: 14, fontWeight: FontWeight.w500)),
         const SizedBox(height: 8),
         TextField(
           controller: controller,
           maxLines: maxLines,
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: GoogleFonts.poppins(fontSize: 14, color: Colors.black38),
+            hintStyle:
+                GoogleFonts.poppins(fontSize: 14, color: Colors.black38),
             filled: true,
             fillColor: Colors.white,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8)),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(color: Colors.grey.shade300),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: Color(0xFF0EA5E9), width: 2),
+              borderSide:
+                  const BorderSide(color: Color(0xFF0EA5E9), width: 2),
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16, vertical: 14),
           ),
         ),
       ],
