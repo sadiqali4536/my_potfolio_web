@@ -1016,7 +1016,7 @@ class FooterBase extends StatelessWidget {
           SizedBox(height: verticalPadding / 3),
           // Footer Text
           Text(
-            "© 2025 CODEWAY SOFTWARE SOLUTIONS | Built by Sadiq Ali",
+            "© 2025 CODEWAY TechHub Pvt Ltd | Built by Sadiq Ali",
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
                 fontSize: taglineFontSize,
