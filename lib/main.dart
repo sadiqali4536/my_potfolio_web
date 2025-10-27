@@ -12,7 +12,7 @@ class MyPortfolioApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'CODWAY',
+      title: 'CODEWAY',
       home: HomePage(),
     );
   }
