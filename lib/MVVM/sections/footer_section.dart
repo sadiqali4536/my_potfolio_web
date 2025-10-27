@@ -952,7 +952,7 @@ class FooterBase extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: "SOFTWARE SOLUTIONS",
+                  text: "TechHub Pvt Ltd",
                   style: GoogleFonts.poppins(
                     fontSize: brandFontSize * 0.6,
                     fontWeight: FontWeight.w500,
